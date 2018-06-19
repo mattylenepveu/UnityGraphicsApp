@@ -31,7 +31,7 @@ public class Teleporter : MonoBehaviour
         m_offset = transform.position - m_destination.transform.position;
 
         // Defines the value for the extents Vector3
-        m_extents = new Vector3(2, 0, 0);
+        m_extents = new Vector3(3, 0, 0);
     }
 
     //--------------------------------------------------------------------------------
