@@ -80,14 +80,14 @@ public class PlayerController : MonoBehaviour
 		// Translate any movement of the player on the x and z axis'
 		transform.Translate(m_moveX, 0, m_moveZ);
 
-		if (m_moveX != 0 || m_moveZ != 0)
-		{
-			// Creates a "new" direction Vector3 of the left control sticks direction
-			Vector3 directionVector = new Vector3(m_moveX, 0, m_moveZ);
+		//if (m_moveX != 0 || m_moveZ != 0)
+		//{
+		//	// Creates a "new" direction Vector3 of the left control sticks direction
+		//	Vector3 directionVector = new Vector3(m_moveX, 0, m_moveZ);
 
-			// Makes the player look in direction of the directionVector
-			transform.rotation = Quaternion.LookRotation(directionVector);
-		}
+		//	// Makes the player look in direction of the directionVector
+		//	transform.rotation = Quaternion.LookRotation(directionVector);
+		//}
     }
 
 	//--------------------------------------------------------------------------------
