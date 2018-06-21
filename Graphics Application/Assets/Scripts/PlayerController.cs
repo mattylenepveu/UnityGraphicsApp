@@ -24,17 +24,12 @@ public class PlayerController : MonoBehaviour
 
     private float m_timer;
 
-    private float m_moveX;
+    private Vector3 m_rightVec;
+    private Vector3 m_leftVec;
+    private Vector3 m_upVec;
+    private Vector3 m_downVec;
 
-    private float m_moveZ;
-
-    private Vector3 RightVec;
-
-    private Vector3 LeftVec;
-
-    private Vector3 UpVec;
-
-    private Vector3 DownVec;
+    private Vector3 m_currentLookVector;
 
     private Rigidbody m_rb;
 
@@ -62,16 +57,14 @@ public class PlayerController : MonoBehaviour
 
         m_timer = m_maxRunTime;
 
-        m_moveX = 0.0f;
-
-        m_moveZ = 0.0f;
-
         m_canRun = true;
 
-        RightVec = new Vector3(0, 90, 0);
-        LeftVec = new Vector3(0, -90, 0);
-        UpVec = new Vector3(0, 0, 0);
-        DownVec = new Vector3(0, 180, 0);
+        m_rightVec = new Vector3(0, 90, 0);
+        m_leftVec = new Vector3(0, -90, 0);
+        m_upVec = new Vector3(0, 0, 0);
+        m_downVec = new Vector3(0, 180, 0);
+
+        m_currentLookVector = m_downVec;
 
         // Displays the starting pellet count to the UI
         m_scoreText.text = "SCORE: " + m_pelletCount.ToString();
@@ -92,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(UpVec));
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(m_currentLookVector));
             m_anim.SetBool("Eating", false);
         }
     }
@@ -106,38 +99,25 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            m_moveZ = 1.0f * m_speed;
-            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(UpVec));
+            m_currentLookVector = m_upVec;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            m_moveZ = -1.0f * m_speed;
-            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(DownVec));
-        }
-
-        if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
-        {
-            m_moveZ = 0.0f;
+            m_currentLookVector = m_downVec;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            m_moveX = -1.0f * m_speed;
-            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(LeftVec));
+            m_currentLookVector = m_leftVec;
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            m_moveX = 1.0f * m_speed;
-            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(RightVec));
-
+            m_currentLookVector = m_rightVec;
         }
 
-        if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-        {
-            m_moveX = 0.0f;
-        }
+        transform.SetPositionAndRotation(transform.position, Quaternion.Euler(m_currentLookVector));
 
         // Detects if the "Left Shift" key is pressed down
         if (Input.GetKey(KeyCode.LeftShift))
