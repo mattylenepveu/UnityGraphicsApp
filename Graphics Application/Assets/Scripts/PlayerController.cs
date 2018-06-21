@@ -28,6 +28,16 @@ public class PlayerController : MonoBehaviour
 
     private float m_moveZ;
 
+    private Vector3 RightVec;
+
+    private Vector3 LeftVec;
+
+    private Vector3 UpVec;
+
+    private Vector3 DownVec;
+
+    private Rigidbody m_rb;
+
     // Keeps track of how many pellets the player has collected
     private int m_pelletCount;
 
@@ -38,7 +48,9 @@ public class PlayerController : MonoBehaviour
 	//--------------------------------------------------------------------------------
 	void Awake() 
 	{
-        m_anim = GetComponent<Animator>();
+        m_anim = GetComponentInChildren<Animator>();
+
+        m_rb = GetComponent<Rigidbody>();
 
         m_timerSlider.maxValue = m_maxRunTime;
 
@@ -56,6 +68,11 @@ public class PlayerController : MonoBehaviour
 
         m_canRun = true;
 
+        RightVec = new Vector3(0, 90, 0);
+        LeftVec = new Vector3(0, -90, 0);
+        UpVec = new Vector3(0, 0, 0);
+        DownVec = new Vector3(0, 180, 0);
+
         // Displays the starting pellet count to the UI
         m_scoreText.text = "SCORE: " + m_pelletCount.ToString();
 	}
@@ -65,29 +82,19 @@ public class PlayerController : MonoBehaviour
 	//--------------------------------------------------------------------------------
 	void FixedUpdate() 
 	{
-        // Stores the x movement to equal the horizontal input multiplied by the speed
-        m_moveX = Input.GetAxis("Horizontal") * m_speed;
-
-        // Stores the z movement to equal the vertical input multiplied by speed
-        m_moveZ = Input.GetAxis("Vertical") * m_speed;
-
-        // Multiplies the x movement by deltatime
-        m_moveX *= Time.deltaTime;
-
-        // Multiplies the z movement by deltatime
-        m_moveZ *= Time.deltaTime;
-
-		// Translate any movement of the player on the x and z axis'
-		transform.Translate(m_moveX, 0, m_moveZ);
-
-		//if (m_moveX != 0 || m_moveZ != 0)
-		//{
-		//	// Creates a "new" direction Vector3 of the left control sticks direction
-		//	Vector3 directionVector = new Vector3(m_moveX, 0, m_moveZ);
-
-		//	// Makes the player look in direction of the directionVector
-		//	transform.rotation = Quaternion.LookRotation(directionVector);
-		//}
+        if (Input.GetKey(KeyCode.UpArrow) ||
+            Input.GetKey(KeyCode.DownArrow) ||
+            Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.RightArrow))
+        {
+            m_rb.AddForce(gameObject.transform.forward * m_speed * Time.deltaTime, ForceMode.Acceleration);
+            m_anim.SetBool("Eating", true);
+        }
+        else
+        {
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(UpVec));
+            m_anim.SetBool("Eating", false);
+        }
     }
 
 	//--------------------------------------------------------------------------------
@@ -95,16 +102,42 @@ public class PlayerController : MonoBehaviour
 	//--------------------------------------------------------------------------------
     void Update()
     {
-        if (m_moveX == 0.0f && m_moveZ == 0.0f)
+        m_timerSlider.value = m_timer;
+
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            m_anim.SetBool("Eating", false);
-        }
-        else
-        {
-            m_anim.SetBool("Eating", true);
+            m_moveZ = 1.0f * m_speed;
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(UpVec));
         }
 
-        m_timerSlider.value = m_timer;
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            m_moveZ = -1.0f * m_speed;
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(DownVec));
+        }
+
+        if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+        {
+            m_moveZ = 0.0f;
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            m_moveX = -1.0f * m_speed;
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(LeftVec));
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            m_moveX = 1.0f * m_speed;
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(RightVec));
+
+        }
+
+        if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+        {
+            m_moveX = 0.0f;
+        }
 
         // Detects if the "Left Shift" key is pressed down
         if (Input.GetKey(KeyCode.LeftShift))
