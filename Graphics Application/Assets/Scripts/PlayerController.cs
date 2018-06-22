@@ -24,12 +24,20 @@ public class PlayerController : MonoBehaviour
 
     private float m_timer;
 
-    private Vector3 m_rightVec;
-    private Vector3 m_leftVec;
-    private Vector3 m_upVec;
-    private Vector3 m_downVec;
+    [HideInInspector]
+    public Vector3 m_rightVec;
 
-    private Vector3 m_currentLookVector;
+    [HideInInspector]
+    public Vector3 m_leftVec;
+
+    [HideInInspector]
+    public Vector3 m_upVec;
+
+    [HideInInspector]
+    public Vector3 m_downVec;
+
+    [HideInInspector]
+    public Vector3 m_currentLookVector;
 
     private Rigidbody m_rb;
 
