@@ -1,0 +1,43 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Vendor:   NVIDIA
+    VRAM:     8096 MB
+    Driver:   23.21.13.8813
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\Matt\Documents\Unity Graphics Application\GraphicsApplication_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.044 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.397619 ms
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 27b4 -> priority: 1 
+  Thread -> id: 3394 -> priority: 1 
+  Thread -> id: 3b8 -> priority: 1 
+  Thread -> id: 3430 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 21.129967 ms
+
+Unloading 49 unused Assets to reduce memory usage. Loaded Objects now: 303.
+Total: 0.720456 ms (FindLiveObjects: 0.025112 ms CreateObjectMapping: 0.017554 ms MarkObjects: 0.227230 ms  DeleteObjects: 0.449584 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.377172 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1168.
+Total: 0.600745 ms (FindLiveObjects: 0.078994 ms CreateObjectMapping: 0.028769 ms MarkObjects: 0.473477 ms  DeleteObjects: 0.018285 ms)
+

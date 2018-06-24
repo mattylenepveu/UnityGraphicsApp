@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Creates a class for the Pellet script
 public class Pellet : MonoBehaviour
 {
     // Public GameObject used for a reference to the player

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Creates a class for the Teleporter script
 public class Teleporter : MonoBehaviour
 {
     // Public GameObject used to store the opposite teleporter as the player's destination
@@ -45,14 +44,17 @@ public class Teleporter : MonoBehaviour
         // Detects if the colliding object has a "Player" tag
         if (pOther.tag == "Player")
         {
+            // Checks if the teleporter's name is "Left Teleporter"
             if (name == "Left Teleporter")
             {
                 // Sets the player's position to equal the offset plus the extents 
                 m_playerControl.transform.position -= m_offset + m_extents;
             }
+
+            // Else if the name is "Right Teleporter"
             else
             {
-                // Sets the player's position to equal the offset plus the extents 
+                // Sets the player's position to equal the offset minus the extents 
                 m_playerControl.transform.position -= m_offset - m_extents;
             }
         }
